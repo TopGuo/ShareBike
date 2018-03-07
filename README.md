@@ -1,11 +1,13 @@
 # ShareBike
 ShareBike is a open source project that used asp.net language by topbirds.
+
 ## 共享单车demo项目 * 项目开源
 
 ```
 本项目硬件支持：IDE:vs2012+ || 数据库：sqlserver08+
 
 ```
+
 <table>
     <tr>
         &copy;<td>微信：jkxx123321</td>&copy;<td>作者：鸟窝</td>
@@ -14,12 +16,15 @@ ShareBike is a open source project that used asp.net language by topbirds.
         &copy;<td>[我的blog](http://www.cnblogs.com/gdsblog/category/1129612.html)</td>;<td>欢迎大家！</td>
     </tr>
 </table>
+
 ```
 本项目用到依赖注入(Spring.net)、分布式缓存（Memacache）、观察者模式（灵活处理日志书写位置）
 依赖抽象编程，一定程度上解耦，目前有打算将项目重构成asp.net core底层
 自我推荐是从入门到面向中级开发人员的练手项目，该项目完成了OA管理系统中基本的用户管理、角色分配、权限管理等模块
+
 可以说底层搭建已经完善，另有不足，请issue！
 ```
+#### 可以使用超级管理员登陆 账号：admin  密码：123456  
 
 ### 演示流程
 1. 登陆
