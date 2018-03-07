@@ -1,0 +1,91 @@
+﻿@model Yuyi.Oa.Model.UserInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>UserInfo</legend>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ShowName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ShowName)
+                @Html.ValidationMessageFor(model => model.ShowName)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Pwd)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Pwd)
+                @Html.ValidationMessageFor(model => model.Pwd)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DelFlag)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DelFlag)
+                @Html.ValidationMessageFor(model => model.DelFlag)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SubTime)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.SubTime)
+                @Html.ValidationMessageFor(model => model.SubTime)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ModifyOn)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ModifyOn)
+                @Html.ValidationMessageFor(model => model.ModifyOn)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Remark)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Remark)
+                @Html.ValidationMessageFor(model => model.Remark)
+            </div>
+    
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+﻿@model Yuyi.Oa.Model.ActionInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        function afterEdit(data) {
+            if (data == 'ok') {
+                alert("修改成功！！");
+                //修改成功 调用父窗体
+                window.parent.window.afterEditSuccess();
+            } else {
+                alert(data);
+            }
+
+        }
+        //父窗体调用
+        function submitForm() {
+            $("form").submit();
+        }
+    </script>
+</head>
+<body>
+    @using (Ajax.BeginForm(new AjaxOptions() { OnSuccess = "afterEdit" }))
+    {
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>修改权限列表</legend>
+
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Url, "URL地址")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Url)
+                @Html.ValidationMessageFor(model => model.Url)
+            </div>
+            @Html.HiddenFor(model => model.SubTime)
+            @Html.HiddenFor(model => model.ModifyOn)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HttpMethod, "提交方式")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.HttpMethod)
+                @Html.ValidationMessageFor(model => model.HttpMethod)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Remark, "备注")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Remark)
+                @Html.ValidationMessageFor(model => model.Remark)
+            </div>
+
+
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ActionName, "权限名")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ActionName)
+                @Html.ValidationMessageFor(model => model.ActionName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.IsMenu, "是否是菜单")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.IsMenu)
+                @Html.ValidationMessageFor(model => model.IsMenu)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Sort, "排序")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Sort)
+                @Html.ValidationMessageFor(model => model.Sort)
+            </div>
+            @Html.HiddenFor(model => model.DelFlag)
+
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.IsIcon, "Icon图标")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.IsIcon)
+                @Html.ValidationMessageFor(model => model.IsIcon)
+            </div>
+
+            <p>
+                <input type="submit" value="修改" />
+            </p>
+        </fieldset>
+    }
+</body>
+</html>

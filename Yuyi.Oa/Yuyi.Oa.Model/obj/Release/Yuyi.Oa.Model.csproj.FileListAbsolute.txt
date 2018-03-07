@@ -1,0 +1,9 @@
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.Model\bin\Release\Yuyi.Oa.Model.dll.config
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.Model\bin\Release\Yuyi.Oa.Model.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.Model\bin\Release\Yuyi.Oa.Model.pdb
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.Model\bin\Release\EntityFramework.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.Model\bin\Release\EntityFramework.xml
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.Model\bin\Release\zh-Hans\EntityFramework.resources.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.Model\obj\Release\Yuyi.Oa.Model.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.Model\obj\Release\Yuyi.Oa.Model.pdb
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.Model\obj\Release\Yuyi.Oa.Model.csprojResolveAssemblyReference.cache

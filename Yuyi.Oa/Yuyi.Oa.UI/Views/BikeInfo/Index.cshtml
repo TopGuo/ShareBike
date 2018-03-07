@@ -1,0 +1,325 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>单车库存管理</title>
+    <link href="~/Content/JqueryEasyUi/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/JqueryEasyUi/themes/icon.css" rel="stylesheet" />
+    <script src="~/Content/JqueryEasyUi/jquery-1.8.3.min.js"></script>
+    <script src="~/Scripts/myjqueryform.js"></script>
+    <script src="~/Content/JqueryEasyUi/jquery.easyui.min.js"></script>
+    <script src="~/Content/JqueryEasyUi/locale/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/datapattern.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //初始化表格EditDiglogDiv
+            initTable();
+            $("#AddDiglogDiv").css("display", "none");
+            $("#EditDiglogDiv").css("display", "none");
+            //绑定搜索查询btnSearch
+            bindSearchBtn();
+
+        });
+
+        //绑定搜索查询
+        function bindSearchBtn() {
+            $("#btnSearch").click(function () {
+                var data = { seacrchName: $("#txtSearchName").val() };
+                initTable(data);
+            });
+        }
+
+        //表格初始化
+        function initTable(queryParams) {
+            $("#tt").datagrid({
+                url: '/BikeInfo/GetBikeInfo',
+                title: '单车库存信息',
+                width: 700,
+                height: 400,
+                fitColumns: true,
+                idField: 'ID',
+                loadMsg: '正在加载请稍后...',
+                pagination: true,
+                singleSelect: false,
+                pageSize: 5,
+                pageNumber: 1,
+                pageList: [5, 10, 15],
+                striped: true,//隔行变色
+                queryParams: queryParams,//表格加载表格时 额外传递参数
+                columns: [
+                    [
+                        //{"ID":1,"UID":"ZY0101011200000000","Name":"周易1","DelFlag":0,"SubTime":"\/Date(1505182682743)\/","ModifyOn":"\/Date(1505182683680)\/","AdminUser":"a","Counts":500,"Price":4,"TotalPrice":2000}
+                        { field: 'ck', checkbox: 'true', align: 'left', width: 20 },
+                        { field: 'ID', title: '编号', width: 30 },
+                        { field: 'UID', title: '单车号',align: 'center', width: 80 },
+                        { field: 'Name', title: '单车名', align: 'center', width: 50 },
+                        { field: 'AdminUser', title: '操作人', align: 'center', width: 50 },
+                        { field: 'Price', title: '单价', align: 'center', width: 30 },
+                        { field: 'Counts', title: '入库数量', align: 'center', width: 30 },
+                        { field: 'TotalPrice', title: '总价', align: 'center', width: 50 },
+                        {
+                            field: 'SubTime',
+                            title: '录入时间',
+                            width: 80,
+                            align: 'center',
+                            formatter: function (value, row, index) {
+                                return (eval(value.replace(/\/Date\((\d+)\)\//gi, "new Date($1)"))).pattern("yyyy-MM-dd h:m:s");
+                            }
+                        },
+                        {
+                            field: 'DelFlag', title: '操作', align: 'center', width: 100,
+                            formatter: function (value, row, index) {
+                                var str = "";
+                                str += "<a href='javascript:void(0);' uid='" + row.ID + "' class='EditLink'>修改</a>&nbsp&nbsp";
+                                str += "<a href='javascript:void(0);' uid='" + row.ID + "' class='DeleteLink'>删除</a>";
+                                return str;
+                            }
+                        }
+                    ]
+                ],
+                toolbar: [
+                {
+                    id: 'btnAdd',
+                    text: '添加',
+                    iconCls: 'icon-add',
+                    handler: function () {
+                        AddClick();//添加对话框
+                    }
+
+                },
+                {
+                    id: 'btnDel',
+                    text: '删除',
+                    iconCls: 'icon-cancel',
+                    handler: function () {
+                        DelClick(); //删除对话框
+                    }
+
+                },
+                {
+                    id: 'btnEdit',
+                    text: '修改',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+                        //校验是否选中一行行
+                        var selectRows = $("#tt").datagrid("getSelections");
+                        //判断是否拿到选中行
+                        if (selectRows.length != 1) {
+                            $.messager.alert("错误提示", "请选中一行要修改的数据！", "warning");
+                            return;
+                        }
+
+                        EditClick(selectRows[0].ID); //编辑对话框
+                    }
+
+                }
+                ],
+
+                onHeaderContextMenu: function (e, field) {
+
+                },
+                onLoadSuccess: function (data) {
+                    //当数据加载完成 点击修改
+                    $(".EditLink").click(function () {
+                        var selectRows = $("#tt").datagrid("getSelections");
+                        var selectRowId = selectRows[0].ID;
+                        if (selectRowId == null) {
+                            return false;
+                        }
+                        EditClick(selectRowId);
+                        return false;
+                    });
+                    //当数据加载完成 点击删除
+                    $(".DeleteLink").click(function () {
+                        //校验是否选中一行行
+                        var selectRows = $("#tt").datagrid("getSelections");
+                        //判断是否拿到选中行
+                        if (selectRows.length != 1) {
+                            $.messager.alert("错误提示", "请选中一个要删除的用户！", "warning");
+                            return;
+                        }
+                        //异步请求后台执行删除
+                        $.post("/UserInfo/Delete", { "ids": selectRows[0].ID }, function (data) {
+                            if (data == "ok") {
+                                //重新加载
+                                $("#tt").datagrid("reload");
+                            } else {
+                                $.messager.alert("删除提示", "删除失败！", "error");
+                            }
+                        });
+                    });
+                }
+
+            });
+
+        }
+        //编辑成功子窗体调用
+        function afterEditSuccess(data) {
+            //关闭窗口 刷新表格
+            $("#EditDiglogDiv").dialog("close");
+            $("#tt").datagrid("reload");
+        }
+        //编辑修改
+        function EditClick(id) {
+            //给iframe的src属性赋值
+            $("#EditFrame").attr("src", "/BikeInfo/Edit/" + id);
+            $("#EditDiglogDiv").css("display", "block");
+            $("#EditDiglogDiv").dialog({
+                title: "修改角色",
+                width: 400,
+                height: 400,
+                modal: true,
+                collapsible: true,
+                minimizable: true,
+                maximizable: true,
+                resizable: true,
+                buttons: [
+                {
+                    id: 'btnOk',
+                    text: '修改',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        //操作子窗体的提交
+                        $("#EditFrame")[0].contentWindow.submitForm();
+
+                    }
+                },
+                {
+                    id: 'btnCancel',
+                    text: '取消',
+                    iconCls: 'icon-cancel',
+                    handler: function () {
+
+                        $("#EditDiglogDiv").dialog("close");
+                    }
+                }]
+
+
+            });
+        }
+        //点击删除
+        function DelClick() {
+            //拿到table表格里选的行数getSelections
+            var selectRows = $("#tt").datagrid("getSelections");
+            //判断是否拿到选中行
+            if (selectRows.length <= 0) {
+                $.messager.alert("错误提示", "亲选中要删除的行数！", "warning");
+                return;
+            }
+            var ids = "";
+            //遍历选中行拿到所选ID
+            for (var key in selectRows) {
+                ids += selectRows[key].ID + ",";
+            }
+            ids = ids.substr(0, ids.length - 1);
+            //alert(ids);
+            $.post("/BikeInfo/Delete", { "ids": ids }, function (data) {
+                if (data == "ok") {
+                    $("#tt").datagrid("reload");
+                } else {
+                    $.messager.alert("删除提示", "删除失败！", "error");
+                }
+            });
+
+
+        }
+        //点击添加
+        function AddClick() {
+            $("#AddDiglogDiv").css("display", "block");
+            $("#AddDiglogDiv").dialog({
+                title: "录入单车信息",
+                width: 400,
+                height: 400,
+                modal: true,
+                collapsible: true,
+                minimizable: true,
+                maximizable: true,
+                resizable: true,
+                buttons: [
+                {
+                    id: 'btnOk',
+                    text: '确定',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        //提交表单到后台
+                        SubAddFrom();
+                    }
+                },
+                {
+                    id: 'btnCancel',
+                    text: '取消',
+                    iconCls: 'icon-cancel',
+                    handler: function () {
+
+                        $("#AddDiglogDiv").dialog("close");
+                    }
+                }]
+            });
+        }
+        //提交表单
+        function SubAddFrom() {
+            $("#AddDiglogDiv form").submit();//后台异步提交表单
+        }
+        //添加数据成功后
+        function afterAdd(data) {
+            if (data == 'ok') {
+                alert("添加成功！！");
+                //关闭窗口  刷新表单
+                $("#AddDiglogDiv").dialog("close");
+                //清掉表单的值
+                $("#AddDiglogDiv form").form("reset");
+                $("#tt").datagrid("reload");
+                //initTable();
+
+            } else {
+                $.message.alert(data);
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div>
+        单车名：<input type="text" name="txtSearchName" id="txtSearchName" />
+        <a id="btnSearch" class="easyui-linkbutton" iconcls="icon-search">搜索</a>
+    </div>
+    <table id="tt" style="width: 700px;" title="角色信息展示" iconcls="icon-edit">
+    </table>
+    <!-------------添加对话框 start--------------------->
+    <div id="AddDiglogDiv">
+        @using (Ajax.BeginForm("AddBikeInfo", "BikeInfo", new AjaxOptions() { OnSuccess = "afterAdd" }))
+        {
+            <table>
+                <tr>
+                    <td>单 车 名：</td>
+                    <td>
+                        <input type="text" name="Name" class="easyui-validatebox" data-options="required:true" /></td>
+                </tr>
+                <tr>
+                    <td>单车单价：</td>
+                    <td>
+                        <input type="text" name="Counts" class="easyui-validatebox" data-options="required:true"/></td>
+                </tr>
+                <tr>
+                    <td>单车数量：</td>
+                    <td>
+                        <input type="text" name="Price" class="easyui-validatebox" data-options="required:true" /></td>
+                </tr>
+            </table>
+        }
+    </div>
+    <!-------------添加对话框 end --------------------->
+
+    <!-------------修改对话框 start--------------------->
+    <div id="EditDiglogDiv">
+        <iframe id="EditFrame" src="JavaScript:void(0)" frameborder="0" scrolling="no" width="100%" height="100%"></iframe>
+
+    </div>
+
+    <!-------------修改对话框 end--------------------->
+</body>
+</html>

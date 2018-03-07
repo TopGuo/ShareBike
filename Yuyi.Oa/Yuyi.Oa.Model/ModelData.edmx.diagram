@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aaac56f745be4b838cb039cab8b26eaa" Name="关系图1" ZoomLevel="87" >
+        <EntityTypeShape EntityType="ModelData.UserInfo" Width="1.5" PointX="2.625" PointY="0.5" />
+        <EntityTypeShape EntityType="ModelData.OrderInfo" Width="1.5" PointX="1.625" PointY="5.5" />
+        <AssociationConnector Association="ModelData.UserInfoOrderInfo" />
+        <EntityTypeShape EntityType="ModelData.RoleInfo" Width="1.5" PointX="5.125" PointY="3.125" />
+        <AssociationConnector Association="ModelData.UserInfoRoleInfo" />
+        <EntityTypeShape EntityType="ModelData.ActionInfo" Width="1.5" PointX="8.125" PointY="0.625" />
+        <AssociationConnector Association="ModelData.RoleInfoActionInfo" />
+        <EntityTypeShape EntityType="ModelData.R_User_ActionInfo" Width="1.5" PointX="4.875" PointY="0.625" />
+        <AssociationConnector Association="ModelData.UserInfoR_User_Action" />
+        <AssociationConnector Association="ModelData.ActionInfoR_User_Action" />
+        <EntityTypeShape EntityType="ModelData.CustomerInfo" Width="1.5" PointX="2.875" PointY="6.375" />
+        <EntityTypeShape EntityType="ModelData.BikeInfo" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ModelData.AccountInfo" Width="1.5" PointX="3.625" PointY="5.625" />
+        <EntityTypeShape EntityType="ModelData.YiquanInfo" Width="1.5" PointX="0.5" PointY="2.75" />
+        <AssociationConnector Association="ModelData.UserInfoAccountInfo" />
+        <AssociationConnector Association="ModelData.UserInfoYiquanInfo" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

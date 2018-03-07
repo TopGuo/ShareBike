@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2D4E7DC8-BFD8-482C-9BCB-459EA8ACC3C3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yuyi.Oa.BLL</RootNamespace>
+    <AssemblyName>Yuyi.Oa.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountInfoService.cs" />
+    <Compile Include="ActionInfoService.cs" />
+    <Compile Include="BaseService.cs" />
+    <Compile Include="BikeInfoService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleInfoService.cs" />
+    <Compile Include="R_User_ActionService.cs" />
+    <Compile Include="UserInfoService.cs" />
+    <Compile Include="YiquanInfoService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yuyi.Oa.DALFactory\Yuyi.Oa.DALFactory.csproj">
+      <Project>{FD332334-8C59-40B4-B250-8E8EB7B5DB7A}</Project>
+      <Name>Yuyi.Oa.DALFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yuyi.Oa.DAL\Yuyi.Oa.DAL.csproj">
+      <Project>{B53F1B66-CBFC-4DA4-821D-1BD644A1D053}</Project>
+      <Name>Yuyi.Oa.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yuyi.Oa.IBLL\Yuyi.Oa.IBLL.csproj">
+      <Project>{8FAAD15A-E682-486E-93FC-35DB6E702784}</Project>
+      <Name>Yuyi.Oa.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yuyi.Oa.IDAL\Yuyi.Oa.IDAL.csproj">
+      <Project>{6FBB27EC-B8D3-41C2-8C66-8B593CC639AC}</Project>
+      <Name>Yuyi.Oa.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yuyi.Oa.Model\Yuyi.Oa.Model.csproj">
+      <Project>{07E47B1C-666F-4279-BCBA-33F4774890AA}</Project>
+      <Name>Yuyi.Oa.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

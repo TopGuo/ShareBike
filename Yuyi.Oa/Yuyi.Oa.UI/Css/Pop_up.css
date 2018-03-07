@@ -1,0 +1,38 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body,div,h2{margin:0;padding:0;} 
+body{ font-size:12px; overflow:hidden}
+#One{position:absolute;width:500px;height:400px;background:#fff;border:3px solid #03a1ff;z-index:1001; display:none;}
+.title{position:relative;height:27px;padding:5px;border-bottom:1px solid #a1b4b0; cursor:move; background:#03a1ff}
+.title h2{font-size:14px;height:27px;line-height:24px; color:#fff;}
+.title div{position:absolute;height:19px;top:2px;right:0;}
+.title a{float:left;width:21px;height:19px;display:block;margin-left:5px;}
+.title a.close{background:url(../Images/bg_css3.png) no-repeat; width:15px;height:17px;background-position:-3px -74px}
+.title a.close:hover{background:url(../Images/bg_css3.png) no-repeat; width:15px;height:17px; background-position:-3px -93px}
+.content{overflow:auto; padding:0 15px;}
+/*边框*/
+.resizeBR{position:absolute;width:14px;height:14px;right:0;bottom:0;overflow:hidden;cursor:nw-resize;}
+.resizeL,#drag .resizeT,#drag .resizeR,#drag .resizeB,#drag .resizeLT,#drag .resizeTR,#drag .resizeLB{position:absolute;background:#000;overflow:hidden;opacity:0;filter:alpha(opacity=0);}
+.resizeL,#drag .resizeR{top:0;width:5px;height:100%;cursor:w-resize;}
+.resizeR{right:0;}
+.resizeT,#drag .resizeB{width:100%;height:5px;cursor:n-resize;}
+.resizeT{top:0;}
+.resizeB{bottom:0;}
+.resizeLT,#drag .resizeTR,#drag .resizeLB{width:8px;height:8px;}
+.resizeLT{top:0;left:0;cursor:nw-resize;}
+.resizeTR{top:0;right:0;cursor:ne-resize;}
+.resizeLB{left:0;bottom:0;cursor:ne-resize;}
+
+.bottombtn{width:50%; position:absolute; bottom:5px; right:5px}
+.black_overlay {display: none; position: absolute; top: 0%; left: 0%; width: 100%; height: 100%; background-color:#000; z-index:1000; -moz-opacity: 0.8; opacity:.40; filter: alpha(opacity=40);}
+.btntalbe{padding-top:3px;  float:right}
+.tkbtn{ margin-left:15px; padding: 6px 8px; cursor: pointer; display: inline-block; text-align: center; line-height: 1; *padding:4px 10px; *height:2em; letter-spacing:2px; font-family: Tahoma, Arial/9!important; width:auto; overflow:visible; *width:1; color: #333; border: solid 1px #ccc; border-radius: 5px; background: #e9e9e9; text-shadow: 0px 1px 1px rgba(255, 255, 255, 1); box-shadow: 0 1px 0 rgba(255, 255, 255, .7),  0 -1px 0 rgba(0, 0, 0, .09); -moz-transition:-moz-box-shadow linear .2s; -webkit-transition: -webkit-box-shadow linear .2s; transition: box-shadow linear .2s; }
+.tkbtn::-moz-focus-inner{ border:0; padding:0; margin:0; }
+.tkbtn:focus { outline:none 0; border-color:#426DC9; box-shadow:0 0 8px rgba(66, 109, 201, .9); }
+.tkbtn:hover { color:#000; border-color:#666; }
+.tkbtn:active { border-color:#666;  box-shadow:inset 0 1px 5px rgba(66, 109, 201, .9), inset 0 1px 1em rgba(0, 0, 0, .3); }
+.tkbtn[disabled] { cursor:default; color:#666; background:#DDD; border: solid 1px #999; filter:alpha(opacity=50); opacity:.5; box-shadow:none; }
+.surebt{ color: #FFF; border: solid 1px #3399dd; background: #009df8;  text-shadow: -1px -1px 1px #1c6a9e; }
+.surebt:hover { color:#FFF; border-color:#0055a7; }
+.surebt:active { border-color:#1c6a9e;}
+

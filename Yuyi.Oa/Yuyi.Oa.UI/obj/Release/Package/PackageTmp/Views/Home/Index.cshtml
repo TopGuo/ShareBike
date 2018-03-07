@@ -1,0 +1,161 @@
+﻿@using System.Text
+@using Yuyi.Oa.Model
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>羽翼办公自动化OA系统</title>
+    <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="~/Css/home/indexcss.css" rel="stylesheet" />
+    <link href="~/Content/LigerUI/Source/lib/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/LigerUI/Source/lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css" />
+    <script src="~/Content/LigerUI/Source/lib/jquery/jquery-1.9.0.min.js" type="text/javascript"></script>
+    <script src="~/Content/LigerUI/Source/lib/ligerUI/js/core/base.js" type="text/javascript"></script>
+    <script src="~/Content/LigerUI/Source/lib/ligerUI/js/ligerui.all.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            $("#layout").ligerLayout();
+            //var links = $("#hiddenlink").val();
+            //alert(links);
+        });
+    </script>
+</head>
+<body>
+    <div id="layout">
+        <!---------------------网页头部开始----------------------------->
+        <div position="top" style="overflow: hidden; background: url(/images/zhouyi/bg/home_content_bg.png) repeat-x; height: 100%;">
+            <a href="#">
+                <img src="~/images/zhouyi/logo/header-logo.png" style="float: left; margin-top: 5px; margin-left: 20px; margin-right: 20px" />
+            </a>
+            <h1 style="color: white; float: left; margin-top: 20px">羽翼办公自动化OA系统</h1>
+            <h3 style="color: white; float: right; margin-right: 20px; margin-top: 20px; font-size: 20px;">当前登录用户:<span style="color: green">@ViewBag.userName</span> @Html.ActionLink("退出系统", "ExitSystem", "Home", new { style = "color: black;font-size: 20px" })</h3>
+        </div>
+        <!---------------------网页头部结束----------------------------->
+
+
+
+        <!---------------------网页内容开始----------------------------->
+        <div position="center" style="overflow: hidden; background: url(/images/zhouyi/bg/home_content_bg.png) no-repeat center center;">
+            <div id="winlinks" style="height: 299px">
+                <ul>
+                </ul>
+            </div>
+        </div>
+        <!---------------------网页内容结束----------------------------->
+    </div>
+</body>
+<script type="text/javascript">
+    var LINKWIDTH = 90, LINKHEIGHT = 90, TASKBARHEIGHT = 43;
+    var winlinksul = $("#winlinks ul");
+
+    //打开对话框
+    function f_open(url, title, icon) {
+        var win = $.ligerDialog.open(
+        {
+            height: 500,
+            url: url,
+            width: 600,
+            showMax: true,
+            showToggle: true,
+            showMin: true,
+            isResize: true,
+            modal: false,
+            title: title,
+            slide: false,
+            buttons: [
+                {
+                    text: '确定',
+                    onclick: function (item, Dialog, index) {
+                        win.hide();
+                    }
+                }
+            ]
+        });
+        var task = jQuery.ligerui.win.tasks[win.id];
+        if (task) {
+            $(".l-taskbar-task-icon:first", task).html('<img src="' + icon + '" />');
+        }
+        return win;
+    }
+    @{
+        List<ActionInfo> list = ViewBag.AllActionList;
+        var str = string.Empty;
+        if (list != null)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var actionInfo in list)
+            {
+                sb.Append("{");
+                sb.AppendFormat("icon: '{0}', title: '{1}', url: '{2}'", actionInfo.IsIcon, actionInfo.ActionName, actionInfo.Url);
+                sb.Append("},");
+            }
+            str = sb.ToString().TrimEnd(',');
+        }
+        
+    }
+    //窗口里面的图标数据
+
+    var links = [@Html.Raw(@str)];
+    //var links = [
+    //    { icon: '/images/Home/3DSMAX.png', title: '用户列表', url: '/UserInfo/Index' },
+    //    { icon: '/images/Home/Xp-G5 006.png', title: '角色列表', url: '/RoleInfo/Index' },
+    //    { icon: '/images/Home/Alien Folder.png', title: '权限列表', url: '/ActionInfo/Index' },
+    //    { icon: '/images/Home/Program Files Folder.png', title: '填写周报', url: '/RoleInfo/Index' },
+    //    { icon: '/images/Home/Xp-G5 006.png', title: '订单管理', url: '/RoleInfo/Index' }
+    //];
+
+
+    //窗口发生变化图标自适应
+    function onResize() {
+        var linksHeight = $(window).height() - TASKBARHEIGHT;
+        var winlinks = $("#winlinks");
+        winlinks.height(linksHeight);
+        var colMaxNumber = parseInt(linksHeight / LINKHEIGHT);//一列最多显示几个快捷方式
+        for (var i = 0, l = links.length; i < l; i++) {
+            var link = links[i];
+            var jlink = $("li[linkindex=" + i + "]", winlinks);
+            var top = (i % colMaxNumber) * LINKHEIGHT, left = parseInt(i / colMaxNumber) * LINKWIDTH;
+            if (isNaN(top) || isNaN(left)) continue;
+            jlink.css({ top: top, left: left });
+        }
+
+    }
+    //图标初始化
+    function linksInit() {
+        for (var i = 0, l = links.length; i < l; i++) {
+            var link = links[i];
+            var jlink;
+            var jlink = $("<li></li>");
+            jlink.attr("linkindex", i);
+            jlink.append("<img src='" + link.icon + "' />");
+            jlink.append("<span>" + link.title + "</span>");
+            jlink.append("<div class='bg'></div>");
+            jlink.hover(function () {
+                $(this).addClass("l-over");
+            }, function () {
+                $(this).removeClass("l-over");
+            }).click(function () {
+                var linkindex = $(this).attr("linkindex");
+                var link = links[linkindex];
+                f_open(link.url, link.title, link.icon);//点击事件  调用打开对话框方法
+            });
+            jlink.appendTo(winlinksul);//追加到父节点
+        }
+
+    }
+
+    $(window).resize(onResize);
+    $.ligerui.win.removeTaskbar = function () { }; //不允许移除
+    $.ligerui.win.createTaskbar(); //页面加载时创建任务栏
+
+    linksInit();
+    onResize();
+
+</script>
+</html>

@@ -1,0 +1,92 @@
+﻿@model Yuyi.Oa.Model.BikeInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>修改单车信息</title>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        function afterEdit(data) {
+            if (data == 'ok') {
+                alert("修改成功！！");
+                //修改成功 调用父窗体
+                window.parent.window.afterEditSuccess();
+            } else {
+                alert(data);
+            }
+
+        }
+        //父窗体调用
+        function submitForm() {
+            $("form").submit();
+        }
+    </script>
+</head>
+<body>
+    @using (Ajax.BeginForm(new AjaxOptions() { OnSuccess = "afterEdit" }))
+    {
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>修改单车信息</legend>
+
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UID, "单车号")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.UID)
+                @Html.ValidationMessageFor(model => model.UID)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name, "单车名")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+            @Html.HiddenFor(model => model.DelFlag)
+
+            @Html.HiddenFor(model => model.SubTime)
+
+            @Html.HiddenFor(model => model.ModifyOn)
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AdminUser, "操作人")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.AdminUser)
+                @Html.ValidationMessageFor(model => model.AdminUser)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Counts, "数量")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Counts)
+                @Html.ValidationMessageFor(model => model.Counts)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Price, "单价")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Price)
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+            @Html.HiddenFor(model => model.TotalPrice)
+            <p>
+                <input type="submit" value="修改" />
+            </p>
+        </fieldset>
+    }
+</body>
+</html>

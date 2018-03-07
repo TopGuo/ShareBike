@@ -1,0 +1,116 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>羽翼办公自动化OA系统</title>
+    <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="~/Css/but_login.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        function keydown(e) {//火狐和ie都支持！
+            var currKey = 0, e = e || event; //这句代码是为了进行浏览器事件对象获取的兼容。js中这句代码的意思是，如果在FireFox或Opera中，隐藏的变量e是存在的，那么e || event返回e，如果在IE中，隐藏变量e是不存在，则返回event。
+            if (e.keyCode == 13) document.all('btnLogin').click();
+        }
+        document.onkeydown = keydown;
+        $(function () {
+            if (window.screen.availHeight > 768) {
+                $(".login_top img").css("margin-top", "5%");
+                $(".cont").css({ "min-height": "530px", "margin-top": "-250px" });
+                $(".cont_flor").css({ "min-height": "530px" });
+                $(".login_left").css({ "margin-top": "30px" });
+            }
+            else {
+                $(".login_top img").css("margin-top", "2%");
+                $(".cont").css("min-height", "480px");
+                $(".cont_flor").css("min-height", "480px");
+                $(".login_left").css({ "margin-top": "10px" });
+            }
+            //点击看不清
+            $("#linkTxt").click(function () {
+                changeCheckCode();
+                return false;
+            });
+            $("#imagescode").click(function() {
+                changeCheckCode();
+                return false;
+            });
+        });
+
+        function changeCheckCode() {
+            $("#imagescode").attr("src", $("#imagescode").attr("src") + Math.random());
+        }
+        //登录成功执行此方法
+        function afterLogin(data) {
+            if (data == "ok") {
+                window.location.href = "/Home/Index";
+            }
+            else {
+                alert(data);
+                //输入错误 刷新验证码
+                changeCheckCode();
+                //刷新输入验证码框的内容
+                $("#txtValidate").val("");//.clear(); //
+            }
+        }
+
+    </script>
+</head>
+<body>
+    @using (Ajax.BeginForm("ProcLogin", "UserLogin", new AjaxOptions() { OnSuccess = "afterLogin" }))
+    {
+        <div class="login_top">
+            <img src="~/images/zhouyi/logo/footer-logo.png" style="width: 80px;height: 50px" alt="羽翼OA后台管理系统" />
+        </div>
+        <div class="cont">
+            <div class="cont_top"></div>
+            <div class="cont_flor">
+                <div class="login_main">
+                    <div class="login_left"></div>
+                    <div class="login_fg"></div>
+                    <div class="login_box">
+                        <div class="form">
+                            <div class="one">
+                                <div class="frame">
+                                    <img src="~/images/usericon.png" class="iconimg" />
+                                    <input type="text" class="text usricon" id="txtLoginName" name="txtLoginName" placeholder="用户名"/>
+                                </div>
+                            </div>
+                            <div class="one">
+                                <div class="frame">
+                                    <img src="~/images/userpwd.png" class="iconimg" />
+                                    <input type="password" class="text pwdicon" id="txtLoginPwd" name="txtLoginPwd" placeholder="密码"/>
+                                </div>
+                            </div>
+                            <div class="one">
+                                <div class="frame_yz">
+                                    <input type="text" class="text_yz yzmicon" id="txtValidate" name="txtValidate" placeholder="验证码" />
+                                </div>
+                                <img alt="请输入验证码" src="/UserLogin/ShowVCode/?id=1" id="imagescode" />
+                                <a href="javascript:void(0)" id="linkTxt">&nbsp;&nbsp;&nbsp;看不清，换一张</a>
+                            </div>
+                            <div class="sign">
+                                <input type="submit" id="btnLogin" value="" class="login" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_botm"></div>
+        </div>
+        <div class="footer">
+            版权所有@2015-2022 <a href="javascript:;">羽翼网络科技有限公司.</a>
+            <p>
+                地址：怀特商业广场D座1002<a href="#">联系方式：18333103619</a>
+            </p>
+        </div>
+    }
+
+
+</body>
+</html>

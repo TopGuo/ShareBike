@@ -1,0 +1,10 @@
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IBLL\bin\Release\Yuyi.Oa.IBLL.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IBLL\bin\Release\Yuyi.Oa.IBLL.pdb
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IBLL\bin\Release\Yuyi.Oa.Model.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IBLL\bin\Release\EntityFramework.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IBLL\bin\Release\Yuyi.Oa.Model.pdb
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IBLL\bin\Release\EntityFramework.xml
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IBLL\bin\Release\zh-Hans\EntityFramework.resources.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IBLL\obj\Release\Yuyi.Oa.IBLL.csprojResolveAssemblyReference.cache
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IBLL\obj\Release\Yuyi.Oa.IBLL.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IBLL\obj\Release\Yuyi.Oa.IBLL.pdb

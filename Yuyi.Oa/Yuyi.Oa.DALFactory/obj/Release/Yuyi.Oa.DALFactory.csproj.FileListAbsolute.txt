@@ -1,0 +1,15 @@
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\bin\Release\Yuyi.Oa.DALFactory.dll.config
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\bin\Release\Yuyi.Oa.DALFactory.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\bin\Release\Yuyi.Oa.DALFactory.pdb
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\bin\Release\EntityFramework.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\bin\Release\Yuyi.Oa.DAL.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\bin\Release\Yuyi.Oa.IDAL.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\bin\Release\Yuyi.Oa.Model.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\bin\Release\Yuyi.Oa.DAL.pdb
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\bin\Release\Yuyi.Oa.IDAL.pdb
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\bin\Release\EntityFramework.xml
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\bin\Release\Yuyi.Oa.Model.pdb
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\bin\Release\zh-Hans\EntityFramework.resources.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\obj\Release\Yuyi.Oa.DALFactory.csprojResolveAssemblyReference.cache
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\obj\Release\Yuyi.Oa.DALFactory.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.DALFactory\obj\Release\Yuyi.Oa.DALFactory.pdb

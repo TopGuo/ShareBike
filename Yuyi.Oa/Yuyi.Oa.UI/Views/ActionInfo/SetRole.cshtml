@@ -1,0 +1,64 @@
+﻿
+@using Yuyi.Oa.Model
+@model Yuyi.Oa.Model.ActionInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>设置角色</title>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        function afterSetRole(data) {
+            if (data == 'ok') {
+                window.parent.window.afterSetRoleSuccess();
+            }
+
+        }
+
+        function submitForm() {
+            $("form").submit();
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <h2>给当前权限 <span style="color: red">@Model.ActionName</span> 设置角色</h2>
+        <hr />
+        @{
+            List<RoleInfo> roleInfos = ViewBag.AllRoles;//将后台传递来的数据转化
+            List<int> existRoleIdList = ViewBag.ExitsRoles;//拿到已经设置的角色Id
+            using (Ajax.BeginForm("ProcessSetRole","ActionInfo",new AjaxOptions(){OnSuccess = "afterSetRole"}))
+            {
+                
+                    int i = 0;
+                    <input id="UId" type="hidden" name="UId" value="@Model.ID"/>
+                    foreach (RoleInfo role in roleInfos)
+                    {
+                    if (i % 3 == 0 && i != 0)
+                    {
+                        <hr />
+                    }
+                    string strRoleId = "ckb_" + @role.ID;
+                    <label for="@strRoleId">@role.Name</label>
+                    if (existRoleIdList.Contains(role.ID))
+                    {
+                        <input type="checkbox" checked="checked" name="@strRoleId" value="@strRoleId" id="@strRoleId"/>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="@strRoleId" value="@strRoleId" id="@strRoleId"/>
+                    }
+                    i++;
+                }
+            }
+        }
+    </div>
+</body>
+</html>

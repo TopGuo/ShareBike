@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelData" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="ModelDataContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="UserInfo" EntityType="ModelData.UserInfo" />
+    <EntitySet Name="OrderInfo" EntityType="ModelData.OrderInfo" />
+    <AssociationSet Name="UserInfoOrderInfo" Association="ModelData.UserInfoOrderInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="OrderInfo" EntitySet="OrderInfo" />
+    </AssociationSet>
+    <EntitySet Name="RoleInfo" EntityType="ModelData.RoleInfo" />
+    <AssociationSet Name="UserInfoRoleInfo" Association="ModelData.UserInfoRoleInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="RoleInfo" EntitySet="RoleInfo" />
+    </AssociationSet>
+    <EntitySet Name="ActionInfo" EntityType="ModelData.ActionInfo" />
+    <AssociationSet Name="RoleInfoActionInfo" Association="ModelData.RoleInfoActionInfo">
+      <End Role="RoleInfo" EntitySet="RoleInfo" />
+      <End Role="ActionInfo" EntitySet="ActionInfo" />
+    </AssociationSet>
+    <EntitySet Name="R_User_ActionInfo" EntityType="ModelData.R_User_ActionInfo" />
+    <AssociationSet Name="UserInfoR_User_Action" Association="ModelData.UserInfoR_User_Action">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="R_User_Action" EntitySet="R_User_ActionInfo" />
+    </AssociationSet>
+    <AssociationSet Name="ActionInfoR_User_Action" Association="ModelData.ActionInfoR_User_Action">
+      <End Role="ActionInfo" EntitySet="ActionInfo" />
+      <End Role="R_User_Action" EntitySet="R_User_ActionInfo" />
+    </AssociationSet>
+    <EntitySet Name="BikeInfo" EntityType="ModelData.BikeInfo" />
+    <EntitySet Name="AccountInfo" EntityType="ModelData.AccountInfo" />
+    <EntitySet Name="YiquanInfo" EntityType="ModelData.YiquanInfo" />
+    <AssociationSet Name="UserInfoAccountInfo" Association="ModelData.UserInfoAccountInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="AccountInfo" EntitySet="AccountInfo" />
+    </AssociationSet>
+    <AssociationSet Name="UserInfoYiquanInfo" Association="ModelData.UserInfoYiquanInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="YiquanInfo" EntitySet="YiquanInfo" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="ShowName" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Pwd" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Type="Int16" Name="DelFlag" Nullable="false" />
+    <Property Type="DateTime" Name="SubTime" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="ModifyOn" Nullable="false" Precision="3" />
+    <Property Type="String" Name="Remark" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="OrderInfo" Relationship="ModelData.UserInfoOrderInfo" FromRole="UserInfo" ToRole="OrderInfo" />
+    <NavigationProperty Name="RoleInfo" Relationship="ModelData.UserInfoRoleInfo" FromRole="UserInfo" ToRole="RoleInfo" />
+    <NavigationProperty Name="R_User_Action" Relationship="ModelData.UserInfoR_User_Action" FromRole="UserInfo" ToRole="R_User_Action" />
+    <NavigationProperty Name="AccountInfo" Relationship="ModelData.UserInfoAccountInfo" FromRole="UserInfo" ToRole="AccountInfo" />
+    <NavigationProperty Name="YiquanInfo" Relationship="ModelData.UserInfoYiquanInfo" FromRole="UserInfo" ToRole="YiquanInfo" />
+  </EntityType>
+  <EntityType Name="OrderInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="UserInfo" Relationship="ModelData.UserInfoOrderInfo" FromRole="OrderInfo" ToRole="UserInfo" />
+    <Property Type="Int32" Name="UserInfoID" Nullable="false" />
+  </EntityType>
+  <Association Name="UserInfoOrderInfo">
+    <End Type="ModelData.UserInfo" Role="UserInfo" Multiplicity="1" />
+    <End Type="ModelData.OrderInfo" Role="OrderInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderInfo">
+        <PropertyRef Name="UserInfoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RoleInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Type="Int16" Name="DelFlag" Nullable="false" />
+    <Property Type="DateTime" Name="SubTime" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="ModifyOn" Nullable="false" Precision="3" />
+    <NavigationProperty Name="UserInfo" Relationship="ModelData.UserInfoRoleInfo" FromRole="RoleInfo" ToRole="UserInfo" />
+    <Property Type="String" Name="Remark" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="ActionInfo" Relationship="ModelData.RoleInfoActionInfo" FromRole="RoleInfo" ToRole="ActionInfo" />
+  </EntityType>
+  <Association Name="UserInfoRoleInfo">
+    <End Type="ModelData.UserInfo" Role="UserInfo" Multiplicity="*" />
+    <End Type="ModelData.RoleInfo" Role="RoleInfo" Multiplicity="*" />
+  </Association>
+  <EntityType Name="ActionInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Url" Nullable="false" MaxLength="512" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="HttpMethod" Nullable="true" MaxLength="32" Unicode="true" FixedLength="false" />
+    <Property Type="DateTime" Name="ModifyOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="SubTime" Nullable="false" Precision="3" />
+    <Property Type="String" Name="ActionName" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Remark" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Type="Boolean" Name="IsMenu" Nullable="true" />
+    <Property Type="Int16" Name="DelFlag" Nullable="false" />
+    <Property Type="Int32" Name="Sort" Nullable="true" />
+    <Property Type="String" Name="IsIcon" Nullable="true" MaxLength="512" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="RoleInfo" Relationship="ModelData.RoleInfoActionInfo" FromRole="ActionInfo" ToRole="RoleInfo" />
+    <NavigationProperty Name="R_User_Action" Relationship="ModelData.ActionInfoR_User_Action" FromRole="ActionInfo" ToRole="R_User_Action" />
+  </EntityType>
+  <Association Name="RoleInfoActionInfo">
+    <End Type="ModelData.RoleInfo" Role="RoleInfo" Multiplicity="*" />
+    <End Type="ModelData.ActionInfo" Role="ActionInfo" Multiplicity="*" />
+  </Association>
+  <EntityType Name="R_User_ActionInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Boolean" Name="HasPerssion" Nullable="true" />
+    <NavigationProperty Name="UserInfo" Relationship="ModelData.UserInfoR_User_Action" FromRole="R_User_Action" ToRole="UserInfo" />
+    <Property Type="Int32" Name="UserInfoID" Nullable="false" />
+    <NavigationProperty Name="ActionInfo" Relationship="ModelData.ActionInfoR_User_Action" FromRole="R_User_Action" ToRole="ActionInfo" />
+    <Property Type="Int32" Name="ActionInfoID" Nullable="false" />
+    <Property Type="Int16" Name="DelFlag" Nullable="false" />
+  </EntityType>
+  <Association Name="UserInfoR_User_Action">
+    <End Type="ModelData.UserInfo" Role="UserInfo" Multiplicity="1" />
+    <End Type="ModelData.R_User_ActionInfo" Role="R_User_Action" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="R_User_Action">
+        <PropertyRef Name="UserInfoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ActionInfoR_User_Action">
+    <End Type="ModelData.ActionInfo" Role="ActionInfo" Multiplicity="1" />
+    <End Type="ModelData.R_User_ActionInfo" Role="R_User_Action" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ActionInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="R_User_Action">
+        <PropertyRef Name="ActionInfoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BikeInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UID" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Type="Int16" Name="DelFlag" Nullable="true" />
+    <Property Type="DateTime" Name="SubTime" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="ModifyOn" Nullable="true" Precision="3" />
+    <Property Type="String" Name="AdminUser" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Type="Int32" Name="Counts" Nullable="false" />
+    <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="AccountInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="Money" Nullable="false" Precision="18" Scale="0" />
+    <NavigationProperty Name="UserInfo" Relationship="ModelData.UserInfoAccountInfo" FromRole="AccountInfo" ToRole="UserInfo" />
+    <Property Type="Int32" Name="UserInfoID" Nullable="false" />
+    <Property Type="String" Name="Remark" Nullable="true" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Type="Int16" Name="DelFlag" Nullable="false" />
+    <Property Type="DateTime" Name="SubTime" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="ModifyOn" Nullable="false" Precision="3" />
+    <Property Type="String" Name="AdminUser" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YiquanInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="Counts" Nullable="false" />
+    <Property Type="String" Name="Remark" Nullable="true" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Type="DateTime" Name="SubTime" Nullable="true" Precision="3" />
+    <Property Type="DateTime" Name="ModifyOn" Nullable="false" Precision="3" />
+    <Property Type="Int16" Name="DelFlag" Nullable="false" />
+    <NavigationProperty Name="UserInfo" Relationship="ModelData.UserInfoYiquanInfo" FromRole="YiquanInfo" ToRole="UserInfo" />
+    <Property Type="Int32" Name="UserInfoID" Nullable="false" />
+  </EntityType>
+  <Association Name="UserInfoAccountInfo">
+    <End Type="ModelData.UserInfo" Role="UserInfo" Multiplicity="1" />
+    <End Type="ModelData.AccountInfo" Role="AccountInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AccountInfo">
+        <PropertyRef Name="UserInfoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserInfoYiquanInfo">
+    <End Type="ModelData.UserInfo" Role="UserInfo" Multiplicity="1" />
+    <End Type="ModelData.YiquanInfo" Role="YiquanInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="YiquanInfo">
+        <PropertyRef Name="UserInfoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

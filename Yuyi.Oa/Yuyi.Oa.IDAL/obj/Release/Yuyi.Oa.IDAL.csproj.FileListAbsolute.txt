@@ -1,0 +1,10 @@
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IDAL\bin\Release\Yuyi.Oa.IDAL.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IDAL\bin\Release\Yuyi.Oa.IDAL.pdb
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IDAL\bin\Release\Yuyi.Oa.Model.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IDAL\bin\Release\EntityFramework.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IDAL\bin\Release\Yuyi.Oa.Model.pdb
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IDAL\bin\Release\EntityFramework.xml
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IDAL\bin\Release\zh-Hans\EntityFramework.resources.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IDAL\obj\Release\Yuyi.Oa.IDAL.csprojResolveAssemblyReference.cache
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IDAL\obj\Release\Yuyi.Oa.IDAL.dll
+C:\Users\guo\Desktop\123\Yuyi.Oa\Yuyi.Oa.IDAL\obj\Release\Yuyi.Oa.IDAL.pdb

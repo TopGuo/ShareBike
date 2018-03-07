@@ -1,0 +1,39 @@
+﻿@charset "utf-8";
+/* CSS Document */
+*{padding:0; margin:0;}
+body{ margin:0 auto; font-family:"微软雅黑"; font-size:12px;}
+
+.login_top{ width:1000px; height:46px; margin:0 auto }
+.login_top img{ width:350px; height:46px; margin-top:5%}
+
+.cont{width:100%; min-width:1000px; min-height:480px; background:#008cde; position:absolute; top:50%; margin-top:-220px; overflow:hidden;}
+.cont_top{ width:100%; height:1px; background:#fba222; position:absolute; top:0px; }
+.cont_botm{ width:100%; height:2px; background:#fba222; position:absolute; bottom:0px }
+.cont_flor{ width:100%; height:480px; background:url(../images/but_ship.png) no-repeat; margin:0 auto;  /*position:absolute; left:50%; margin-left:-960px;*/}
+
+
+.login_main{width:1000px; margin:0 auto; height:500px;}
+.login_left{ width:570px; height:460px; background:url(../images/but_left_pic.png) no-repeat; float:left; margin-top:10px;}
+.login_fg{ width:1px; height:480px; background:url(../images/but_fgx.png) no-repeat; float:left; margin-left:20px;}
+.login_box{background:url(../images/login_box.png) no-repeat; width:380px; height:330px; float:right; margin-top:105px}
+
+.form { width:285px; height:226px; margin:52px 50px 52px 44px;}
+.form .one { width:285px; height:22px; margin-bottom:40px;}
+.form .one label{ width:60px; height:32px; font-size:14px; color:#333; float:left; vertical-align:middle; line-height:32px;}
+.form .frame{ width:285px; height:32px; line-height:32px; vertical-align:middle; /*background:url(../images/frame_lin.png) no-repeat;*/ float:left; border:1px solid #cccccc ; position:relative; background:#fff}
+.form .frame_yz{ width:182px; height:32px;line-height:32px; vertical-align:middle; /*background:url(../images/frame_lin_yz.png) no-repeat;*/ float:left; border:1px solid #cccccc; background:#fff}
+.form .text{ width:260px; height:20px; line-height:20px; border:0;  padding-left:25px; color:#333; outline-style:none}
+.form .text_yz{ width:160px; height:32px; line-height:32px; border:0; padding-left:25px; color:#333; outline-style:none}
+/*.form .one img{ width:92px; height:28px; float:right;}*/
+.form .sign{ width:285px; height:42px;}
+.sign .login{ width:285px; height:42px; background:url(../images/login_land.png) no-repeat; float:left; border:none;}
+
+/*前面的小图标*/
+/*.usricon{background:url(../images/usericon.png) no-repeat 5px center;}
+.pwdicon{background:url(../images/userpwd.png) no-repeat 5px center;}*/
+.yzmicon{background:url(../images/useryzm.png) no-repeat 5px center;}
+
+.footer{ width:100%; height:15px;  margin:0 auto; text-align:center; color:#333;  position:absolute; bottom:10px;}
+input:-webkit-autofill{-webkit-box-shadow: 0 0 0px 900px #fff inset !important; }
+.form .one .iconimg{ width:18px; height:18px; position:absolute;top:7px;left:4px;}
+#imagescode{margin-left:12px; height:30px;}
